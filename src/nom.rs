@@ -54,12 +54,10 @@ pub fn not_line_ending<E = u32>(input:&[u8]) -> IResult<&[u8], &[u8], E> {
   Done(&input[input.len()..], input)
 }
 
-named!(tag_ln, tag!("\n"));
-
 /// Recognizes a line feed
 #[inline]
 pub fn line_ending<E = u32>(input:&[u8]) -> IResult<&[u8], &[u8], E> {
-  tag_ln(input)
+  tag!(input, "\n")
 }
 
 #[inline]
