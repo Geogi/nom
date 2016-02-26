@@ -19,7 +19,7 @@ use std::mem::transmute;
 
 #[inline]
 pub fn tag_cl<'a,'b, E = u32>(rec:&'a[u8]) ->  Box<Fn(&'b[u8]) -> IResult<&'b[u8], &'b[u8], E> + 'a> {
-  Box::new(move |i: &'b[u8]| -> IResult<&'b[u8], &'b[u8]> {
+  Box::new(move |i: &'b[u8]| -> IResult<&'b[u8], &'b[u8], E> {
     if i.len() >= rec.len() && &i[0..rec.len()] == rec {
       Done(&i[rec.len()..], &i[0..rec.len()])
     } else {
