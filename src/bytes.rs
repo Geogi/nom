@@ -75,7 +75,7 @@ macro_rules! tag_bytes (
       let reduced = &$i[..m];
       let b       = &$bytes[..m];
 
-      let res: $crate::IResult<_,_> = if reduced != b {
+      let res: $crate::IResult<_,_,_> = if reduced != b {
         $crate::IResult::Error($crate::Err::Position($crate::ErrorKind::Tag, $i))
       } else if m < blen {
         $crate::IResult::Incomplete($crate::Needed::Size(blen))
